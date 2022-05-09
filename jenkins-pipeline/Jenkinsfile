@@ -10,7 +10,7 @@ node {
       echo "Nothing to compile for hello.sh..."
     }
     stage('Test') {
-      sh "chmod +x -R ${env.WORKSPACE}"
+      sh "chmod +x -R ./jenkins-pipeline/hello_test.sh"
       sh "./jenkins-pipeline/hello_test.sh"
     }
     stage('Package') {
