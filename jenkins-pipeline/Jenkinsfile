@@ -1,25 +1,25 @@
 node {
   try {
-    stage('checkout') {
+    stage('Checkout') {
       checkout scm
     }
-    stage('prepare') {
+    stage('Prepare') {
       sh "git clean -fdx"
     }
-    stage('compile') {
-      echo "nothing to compile for hello.sh..."
+    stage('Compile') {
+      echo "Nothing to compile for hello.sh..."
     }
-    stage('test') {
-      sh "./test_hello.sh"
+    stage('Test') {
+      sh "./hello_test.sh"
     }
-    stage('package') {
+    stage('Package') {
       sh "tar -cvzf hello.tar.gz hello.sh"
     }
-    stage('publish') {
-      echo "uploading package..."
+    stage('Publish') {
+      echo "Uploading package..."
     }
   } finally {
-    stage('cleanup') {
+    stage('Cleanup') {
       echo "doing some cleanup..."
     }
   }
