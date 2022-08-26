@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'dockerserver' } // if you don't have other steps, 'any' agent works
     stages {
-        stage('Back-end') {
+        stage('Git-Clone') {
             agent {
                 docker {
                   label 'dockerserver'  // both label and image
@@ -12,7 +12,18 @@ pipeline {
                 sh 'mvn --version'
             }
         }
-        stage('Front-end') {
+        stage('Kics-Scan') {
+            agent {
+              docker {
+                label 'dockerserver'  // both label and image
+                image 'node:7-alpine' 
+              }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
+        stage('Severiy-Check') {
             agent {
               docker {
                 label 'dockerserver'  // both label and image
