@@ -5,33 +5,33 @@ pipeline {
             agent {
                 docker {
                   label 'dockerserver'  // both label and image
-                  image 'maven:3-alpine'
+                  image 'docker-dev:1'
                 }
             }
             steps {
-                sh 'mvn --version'
+                sh 'git clone https://github.com/rohitsatpute01/tekton-kics'
             }
         }
         stage('Kics-Scan') {
             agent {
               docker {
                 label 'dockerserver'  // both label and image
-                image 'node:7-alpine' 
+                image 'checkmarx/kics' 
               }
             }
             steps {
-                sh 'node --version'
+                sh 'kics --help'
             }
         }
         stage('Severiy-Check') {
             agent {
               docker {
                 label 'dockerserver'  // both label and image
-                image 'node:7-alpine' 
+                image 'bashell/alpine-bash' 
               }
             }
             steps {
-                sh 'node --version'
+                sh 'echo "This is severity check"'
             }
         }
     }
